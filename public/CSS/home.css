@@ -1,0 +1,106 @@
+
+
+/* ****************************************** HEADER ************************************** */
+.BrandLogo{
+    height: 40px;
+    width: auto;
+    padding: 0px 50px 0px 10px;
+}
+
+.ProfileName{
+    background-color: black;
+    background: transparent;
+    border: 0px;
+    font-family: 'Pangolin', cursive;
+}
+
+.dropdown{
+    font-family: 'Pangolin', cursive;
+}
+.ProfileName:hover{
+    background-color: black;
+    /* background: transparent; */
+    border: 0px;
+}
+.dropdown-item{
+    background-color: #ffc107;
+    font-weight: bolder;
+}
+
+.SearchBox{
+    border: 2px solid black;
+    border-radius: 20px;
+    /* border-radius: 20% 5% 20% 5%/5% 20% 25% 20%; */
+    width: 100%;
+}
+input{
+    width: 100%;
+}
+/* ****************************************** HEADER ************************************** */
+
+
+/* ************************************* Discussion Option ******************************** */
+
+.Discussion-Option{
+    /* float: right; */
+    list-style: none;
+    margin-top: 5px;
+}
+.Discussion-Option a{
+    display: inline-block; /* MAKES THE LISTS TO DISPLAY HORIZONTALY */
+    /* margin-left: 40px; */
+    text-align: center;
+}
+.Discussion-Option a:link,
+.Discussion-Option a:visited{
+    color: black;
+    padding: 10px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 100%;
+    border-bottom: 3px solid transparent; /* WHEN NOT HOVERED MAKE HOVER EFFECT TRANPARENT */
+    transition: border-bottom 0.2s;
+}
+.Discussion-Option a:hover{
+    border-bottom: 3px solid #ffc107;
+}
+
+/* ******************************************* BODY *************************************** */
+
+.bodyDiv{
+    margin: 30px 25px;
+    background-color: #ffc107;
+    padding: 15px 5px;
+    border-radius: 20px;
+    min-height: 600px;
+}
+
+.card{
+    margin: 10px;
+    border-radius: 15px;
+    display: table-cell; /* Make elements inside the container behave like table cells */
+}
+
+.col{
+    margin-bottom: 30px;
+}
+
+
+/* ******************************************* BODY *************************************** */
+
+
+
+
+
+/* @media screen 
+and (max-width: 1400px) 
+and (min-width: 100px) 
+{
+    .iPhone{
+        position: static;
+        transform: rotate(0);
+    }
+    #title{
+        text-align: center;
+    }
+} */

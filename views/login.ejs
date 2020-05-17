@@ -1,0 +1,24 @@
+<%- include('partials/Log_Reg-header.ejs') %>
+
+<form class="form-signin" action="/login" method="POST">
+    <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+    <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username" required autofocus>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+    <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+    <p class="goto-somewhere">Go to <a href="/register">Register</a></p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+</form>
+
+<%- include('partials/Log_Reg-footer.ejs') %>
+
+
+
+<!-- <h1>Login</h1>
+
+<form action="/login" method="POST">
+    <input type="text" id="username" name="username" placeholder="Username" required><br>
+    <input type="password" id="password" name="password" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+</form>
+<p>Go to <a href="/register">register</a></p> -->
