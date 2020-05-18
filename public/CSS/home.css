@@ -12,6 +12,7 @@
     background: transparent;
     border: 0px;
     font-family: 'Pangolin', cursive;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
 }
 
 .dropdown{
@@ -28,6 +29,7 @@
 }
 
 .SearchBox{
+    display: inline;
     border: 2px solid black;
     border-radius: 20px;
     /* border-radius: 20% 5% 20% 5%/5% 20% 25% 20%; */
@@ -45,11 +47,13 @@ input{
     /* float: right; */
     list-style: none;
     margin-top: 5px;
+    margin-bottom: 0px;
 }
 .Discussion-Option a{
     display: inline-block; /* MAKES THE LISTS TO DISPLAY HORIZONTALY */
     /* margin-left: 40px; */
     text-align: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
 }
 .Discussion-Option a:link,
 .Discussion-Option a:visited{
@@ -69,20 +73,38 @@ input{
 
 .bodyDiv{
     margin: 30px 25px;
-    background-color: #ffc107;
+    /* background-color: #ffc107; */
     padding: 15px 5px;
     border-radius: 20px;
     min-height: 600px;
 }
+.discussion_a{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+.discussion_a:hover{
+    text-decoration: none;
+    color: black;
+}
 
+.card-text{
+    padding-bottom: 10px;
+}
 .card{
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
     margin: 10px;
     border-radius: 15px;
     display: table-cell; /* Make elements inside the container behave like table cells */
 }
+.card:hover{
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+    background-color: #e6e6e6;
+    transition: background-color 0.2s;
+}
 
 .col{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 

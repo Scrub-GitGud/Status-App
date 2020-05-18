@@ -15,9 +15,10 @@
     </div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle ProfileName" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%=name%>
+          <i class="fas fa-user-circle"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#"> <%=name%></a>
             <a class="dropdown-item" href="/logout">Log Out</a>
         </div>
     </div>
@@ -29,11 +30,43 @@
   <a class="col" href="#">My Discussions</a>
 </div>
 
+<!-- --------------------------------------------------Modal---------------------------------------------- -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Discussion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/newDiscussion" method="POST">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="recipient-name" name="newDiscussionTitle">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Details:</label>
+            <textarea class="form-control" id="message-text" name="newDiscussionDetail"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        <button class="btn btn-warning" type="submit">Create</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------Modal---------------------------------------------- -->
+
 <!-- ----------------------------------------------Discussions-------------------------------------------- -->
 
 <div class="bodyDiv card-deck d">
 
-    <div class="col col-lg-3 col-md-4 col-sm-6">
+    <!-- backup
+       <div class="col col-lg-3 col-md-4 col-sm-6">
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Covid-19</h5>
@@ -41,129 +74,35 @@
               <a href="#" class="btn btn-primary">Join</a>
             </div>
           </div>
-    </div>
+    </div> -->
+    <% for(let i = 0; i < allDiscussions.length; i++) { %>
+    <a href="/discussion/<%= allDiscussions[i].discussion_title %>" class="discussion_a">
+      <div class="col col-lg-3 col-md-4 col-sm-6">
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= allDiscussions[i].discussion_title %> </h5>
+                <p class="card-text"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
+                <a href="#" class="btn btn-primary">Join</a>
+              </div>
+            </div>
+      </div>
+    </a>
+    <% } %>
+
+    <!-- ------------------------------------------------------------------------------------------------- -->
 
     <div class="col col-lg-3 col-md-4 col-sm-6">
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Football</h5>
-              <p class="card-text">Discussion on the UCL match tommorow.</p>
-              <a href="#" class="btn btn-primary">Join</a>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+                New Discussion
+              </button>
             </div>
           </div>
     </div>
 
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">My Birthday</h5>
-              <p class="card-text">My Birthday is on the next week. All of you are invited</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
+</div>
 
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Ramadan</h5>
-              <p class="card-text">Ramadan is almost over.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lockdown</h5>
-              <p class="card-text">What's everyone doing in the lockdown.</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div>
-
-    <button>+</button>
 
 <!-- ----------------------------------------------BODY-------------------------------------------- -->
 
