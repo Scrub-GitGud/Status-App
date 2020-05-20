@@ -121,7 +121,7 @@ app.route("/logout")
 });
 // ============================================== Authentication ==================================
 
-    
+
 
 
 // ============================================== Discussion ==================================
@@ -153,14 +153,7 @@ app.get("/discussion/:discussionID", (req, res)=>{
     discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
       res.render("discussion" , {DiscussionTitle: result.discussion_title, DiscussionDetail: result.details})
     })
-  
-    // postAry.forEach(i => {
-    //   if(_.lowerCase(i.title) === requestedPost){
-    //     res.render("post", {XpostTitle: i.title, XpostContent: i.content})
-    //   }
-    // });
   })
-
 
 
 
