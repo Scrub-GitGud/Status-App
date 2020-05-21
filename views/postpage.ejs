@@ -1,0 +1,142 @@
+<%- include('partials/HEADER.ejs') %>
+
+
+
+      
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h3>Activity</h3>
+            </div>
+
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">John Cena</a> liked your post</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Condoriano</a> Commented on your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
+            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+
+        </div>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <div class="title_nd_detail">
+                <h1><%= DiscussionTitle %> </h1>
+                <p><%= DiscussionDetail %> </p>
+
+                <div class="form-group">
+                    <form action="/create_new_post" method="POST">
+                        <textarea name="post_textarea" class="form-control post_textarea" id="post_textarea" rows="6" placeholder="Create new post..."></textarea>
+                        <button type="submit" class="myBtn postBtn" name="postBtn" value="<%= DiscussionTitle %>">Post</button>
+                        <button type="button" class="myBtn cancelBtn" onclick="ClearTextarea();">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="line"></div>
+
+            <% for(let i = 0; i < allPost.length; i++) { %>
+            <div class="post_section">
+                <h3><img src="/avatar5.png" alt="Avatar" class="avatar"><%= allPost[i].post_creator %> </h3>
+                
+                <p><%= allPost[i].post_content %> </p>
+                
+                <!-- Like Button -->
+                <a href="" class="btn Like_Comment_Btn"><i class="far fa-thumbs-up"></i> 59</a>
+
+
+                <!-- Comment Input -->
+                <div class="group">
+                    <form action="/add_comment" method="POST">  
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Add a comment..</label>
+                    </form>
+                </div>
+
+                
+                <!-- <form class="col s12 no_paddin_margin">
+                    <div class="row">
+                    <div class="input-field col s6 no_paddin_margin">
+                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix2"><i class="far fa-comment"></i> Add a new comment...</label>
+                    </div>
+                    </div>
+                </form> -->
+
+  
+
+                <div class="comments">
+                    <h5><img src="/avatar3.png" alt="Avatar" class="smallAvater">Blond Bitch</h5>
+                    <p>Random comment.</p>
+                    <a href="" class="Like_Comment_Btn_sm"><i class="far fa-thumbs-up"></i> 8</a>
+                    <!-- <a href="" class="Like_Comment_Btn_sm"><i class="far fa-comment"></i> Reply</a> -->
+                </div>
+            </div>
+            <div class="line"></div>
+            <% } %>
+        
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+        
+        // Enter to submit textarea. 
+        // $("#post_textarea").keypress(function (e) {
+        //     if(e.which == 13 && !e.shiftKey) {        
+        //         $(this).closest("form").submit();
+        //         e.preventDefault();
+        //     }
+        // });
+
+        // Cleat textarea when Cancel clicked
+        function ClearTextarea() {
+            document.getElementById("post_textarea").value = "";
+        } 
+    </script>
+</body>
+
+</html>

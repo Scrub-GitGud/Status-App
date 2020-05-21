@@ -1,8 +1,8 @@
-<%- include('partials/home-header.ejs') %>
+<%- include('partials/Header.ejs') %>
 
 <!-- ---------------------------------------------HEADER------------------------------------------- -->
-<nav class="navbar navbar-expand navbar-light bg-warning">
-    <img src="xStatus-logo.png" alt="BrandLogo"   class="BrandLogo">
+<!-- <nav class="navbar navbar-expand navbar-light bg-secondary">
+    <a href="/"><img src="xStatus-logo.png" alt="BrandLogo"   class="BrandLogo"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,13 +22,13 @@
             <a class="dropdown-item" href="/logout">Log Out</a>
         </div>
     </div>
-</nav>
+</nav> -->
 <!-- ---------------------------------------------HEADER------------------------------------------- -->
 
-<div class="Discussion-Option row">
+<!-- <div class="Discussion-Option row">
   <a class="col" href="#">All Discussions</a>
   <a class="col" href="#">My Discussions</a>
-</div>
+</div> -->
 
 <!-- --------------------------------------------------Modal---------------------------------------------- -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,7 +63,7 @@
 
 <!-- ----------------------------------------------Discussions-------------------------------------------- -->
 
-<div class="bodyDiv card-deck d">
+<div class=" card-deck d BodyDiv">
 
     <!-- backup
        <div class="col col-lg-3 col-md-4 col-sm-6">
@@ -75,23 +75,56 @@
             </div>
           </div>
     </div> -->
-    <% for(let i = 0; i < allDiscussions.length; i++) { %>
-    <a href="/discussion/<%= allDiscussions[i].discussion_title %>" class="discussion_a">
+    <!-- <% for(let i = 0; i < allDiscussions.length; i++) { %>
+    <a href="/<%= allDiscussions[i].discussion_title %>" class="discussion_a">
       <div class="col col-lg-3 col-md-4 col-sm-6">
           <div class="card">
               <div class="card-body">
                 <h5 class="card-title"><%= allDiscussions[i].discussion_title %> </h5>
                 <p class="card-text"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
-                <a href="#" class="btn btn-primary">Join</a>
+                <a href="#" class="btn btn-primary">12 Posts</a>
               </div>
             </div>
       </div>
     </a>
-    <% } %>
+    <% } %> -->
+
+    <!-- <% for(let i = 0; i < allDiscussions.length; i++) { %>
+      <div class="col col-lg-3 col-md-4 col-sm-6" onclick="location.href='<%= allDiscussions[i].discussion_title %>'">
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= allDiscussions[i].discussion_title %> </h5>
+                <p class="card-text"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
+                <p class="different_p">12 posts</p>
+              </div>
+            </div>
+      </div>
+    <% } %> -->
+
+    <div class="row">
+      <% for(let i = 0; i < allDiscussions.length; i++) { %>
+        <div class="col-lg-2 col-md-4 col-sm-6 myCARD" onclick="location.href='<%= allDiscussions[i].discussion_title %>'">
+          <h5><%= allDiscussions[i].discussion_title %></h5>
+          <p class="CardDetails"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
+          <p class="different_p">12 posts</p>
+        </div>
+      <% } %>
+
+
+      <div class="col-lg-2 col-md-4 col-sm-6 myCARD">
+        <button type="button" class="btn btn-dark myBtn postBtn plusBtn" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
+          <!-- <i class="fas fa-plus fa-8x"></i> -->
+          +
+        </button>
+      </div>
+    </div>
+
+   
+
 
     <!-- ------------------------------------------------------------------------------------------------- -->
 
-    <div class="col col-lg-3 col-md-4 col-sm-6">
+    <!-- <div class="col col-lg-3 col-md-4 col-sm-6">
         <div class="card">
             <div class="card-body">
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
@@ -99,7 +132,7 @@
               </button>
             </div>
           </div>
-    </div>
+    </div> -->
 
 </div>
 

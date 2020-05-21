@@ -7,105 +7,96 @@
     padding: 0px 50px 0px 10px;
 }
 
-.ProfileName{
+/* .ProfileName{
     background-color: black;
     background: transparent;
     border: 0px;
-    font-family: 'Pangolin', cursive;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
-}
+} */
 
-.dropdown{
-    font-family: 'Pangolin', cursive;
-}
-.ProfileName:hover{
+/* .ProfileName:hover{
     background-color: black;
-    /* background: transparent; */
     border: 0px;
-}
-.dropdown-item{
+} */
+/* .dropdown-item{
     background-color: #ffc107;
     font-weight: bolder;
-}
+} */
 
-.SearchBox{
+/* .SearchBox{
     display: inline;
     border: 2px solid black;
     border-radius: 20px;
-    /* border-radius: 20% 5% 20% 5%/5% 20% 25% 20%; */
     width: 100%;
-}
-input{
+} */
+/* input{
     width: 100%;
-}
+} */
 /* ****************************************** HEADER ************************************** */
 
 
 /* ************************************* Discussion Option ******************************** */
 
-.Discussion-Option{
-    /* float: right; */
+/* .Discussion-Option{
     list-style: none;
     margin-top: 5px;
     margin-bottom: 0px;
-}
-.Discussion-Option a{
-    display: inline-block; /* MAKES THE LISTS TO DISPLAY HORIZONTALY */
-    /* margin-left: 40px; */
+} */
+/* .Discussion-Option a{
+    display: inline-block;
+    margin-left: 40px;
     text-align: center;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
-}
-.Discussion-Option a:link,
+} */
+/* .Discussion-Option a:link,
 .Discussion-Option a:visited{
     color: black;
     padding: 10px 0;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 100%;
-    border-bottom: 3px solid transparent; /* WHEN NOT HOVERED MAKE HOVER EFFECT TRANPARENT */
+    border-bottom: 3px solid transparent;
     transition: border-bottom 0.2s;
-}
-.Discussion-Option a:hover{
+} */
+/* .Discussion-Option a:hover{
     border-bottom: 3px solid #ffc107;
-}
+} */
 
 /* ******************************************* BODY *************************************** */
 
-.bodyDiv{
-    margin: 30px 25px;
-    /* background-color: #ffc107; */
-    padding: 15px 5px;
-    border-radius: 20px;
-    min-height: 600px;
-}
-.discussion_a{
+
+/* .discussion_a{
     display: block;
     text-decoration: none;
     color: black;
-}
-.discussion_a:hover{
+} */
+/* .discussion_a:hover{
     text-decoration: none;
     color: black;
-}
+} */
 
-.card-text{
-    padding-bottom: 10px;
-}
-.card{
+/* .card-text{
+    padding-bottom: 5px;
+} */
+/* .card{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
     margin: 10px;
     border-radius: 15px;
-    display: table-cell; /* Make elements inside the container behave like table cells */
 }
 .card:hover{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
     background-color: #e6e6e6;
     transition: background-color 0.2s;
+    cursor: pointer;
 }
+.card-title{
+    color: tomato;
+} */
 
-.col{
+
+/* .col{
     margin-bottom: 20px;
-}
+} */
 
 
 /* ******************************************* BODY *************************************** */
@@ -114,15 +105,57 @@ input{
 
 
 
-/* @media screen 
-and (max-width: 1400px) 
-and (min-width: 100px) 
-{
-    .iPhone{
-        position: static;
-        transform: rotate(0);
-    }
-    #title{
-        text-align: center;
-    }
-} */
+/* ******************************************* Later Added Card *************************************** */
+.BodyDiv{
+    margin: 100px 25px;
+    /* background-color: #ffc107; */
+    padding: 15px 5px;
+    border-radius: 20px;
+    min-height: 600px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0px;
+}
+
+.myCARD{
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color:white; 
+    font-size: 17px;
+    width: 500px;
+}
+.myCARD h4{
+    
+}
+.myCARD:hover{
+    background-color: #e6e6e6;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.CardDetails{
+    height: 130px;
+}
+.different_p{
+    color: tomato;
+    /* position: absolute;
+    padding-top: 15px;
+    margin: 15px;
+    bottom: 0;
+    left: 0; */
+}
+
+.plusBtn{
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    margin: auto;
+    font-size: 100px;
+}
+
+
+

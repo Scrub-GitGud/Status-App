@@ -27,12 +27,15 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String
 })
+const commentSchema = {
+    commenter: String,
+    comment: String
+}
 const postSchema = {
     post_creator: String,
     post_content: String,
     liker: String,
-    comment: String,
-    commenter: String
+    Comments: [commentSchema]
 }
 const discussionSchema = {
     discussion_title: String,
@@ -44,6 +47,7 @@ const discussionSchema = {
 userSchema.plugin(passportLocalMongoose);
 
 const UserCollection = new mongoose.model("UserCollection", userSchema)
+const commentCollection = new mongoose.model("commentCollection", commentSchema)
 const postCollection = new mongoose.model("postCollection", postSchema)
 const discussionCollection = new mongoose.model("discussionCollection", discussionSchema)
 
@@ -124,7 +128,7 @@ app.route("/logout")
 
 
 
-// ============================================== Discussion ==================================
+// ============================================== Create Discussion ==================================
 app.post("/newDiscussion", (req, res)=>
 {
     const newTitle = req.body.newDiscussionTitle
@@ -143,26 +147,64 @@ app.post("/newDiscussion", (req, res)=>
     res.redirect("/")
 })
 
-app.get("/discussion/:discussionID", (req, res)=>{
-    const requestedDiscussion = req.params.discussionID
+app.get("/:postpageID", (req, res)=>{
+    const requestedDiscussion = req.params.postpageID
     // const requestedDiscussion_lodash = _.lowerCase(requestedDiscussion);
 
-    console.log("requestedDiscussion    => " + requestedDiscussion);
+    console.log("requestedDiscussion => " + requestedDiscussion);
     // console.log("lodashed version => " + requestedDiscussion_lodash);
     
-    discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
-      res.render("discussion" , {DiscussionTitle: result.discussion_title, DiscussionDetail: result.details})
+    if(req.isAuthenticated()){
+        discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
+            res.render("postpage" , {DiscussionTitle: result.discussion_title, DiscussionDetail: result.details, allPost:result.Posts})
+        })
+    }else{
+        console.log("NOT AUTHENTICATED TO ==> " + requestedDiscussion);
+        res.redirect("/login")
+    }
+})
+
+
+
+
+// ============================================== Create Post ==================================
+app.post("/create_new_post", (req, res)=>{
+    
+    const title_fromPostBtn = req.body.postBtn
+    const new_post_content = req.body.post_textarea
+    
+    const newPost = new postCollection({
+        post_creator: GLOBAL_USERNAME,
+        post_content: new_post_content
     })
-  })
+
+    console.log(title_fromPostBtn);
+    console.log(newPost);
+
+    if(new_post_content === ""){
+        res.redirect("back")
+        return
+    }
+
+    if(req.isAuthenticated()){
+        discussionCollection.findOne({discussion_title: title_fromPostBtn}, (err, result)=>{
+            if(!err){
+                console.log(result.Posts);
+
+                result.Posts.push(newPost)
+                result.save()
+                res.redirect("back")
+            }
+        })
+    }
+})
 
 
+// ============================================== Add Comment ==================================
 
+app.post("/add_comment", (req, res)=>{
 
-
-
-
-
-
+})
 
 
 app.listen(PORT, ()=>{
