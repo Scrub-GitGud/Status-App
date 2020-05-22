@@ -4,7 +4,7 @@
   "description": "A status app for friend circles",
   "main": "app.js",
   "scripts": {
-    "GOo": "nodemon app.js"
+    "XXX": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

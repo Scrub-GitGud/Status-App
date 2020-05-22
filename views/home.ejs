@@ -106,7 +106,7 @@
         <div class="col-lg-2 col-md-4 col-sm-6 myCARD" onclick="location.href='<%= allDiscussions[i].discussion_title %>'">
           <h5><%= allDiscussions[i].discussion_title %></h5>
           <p class="CardDetails"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
-          <p class="different_p">12 posts</p>
+          <p class="different_p"><%= allDiscussions[i].Posts.length %> Posts</p>
         </div>
       <% } %>
 

@@ -226,6 +226,11 @@ a[data-toggle="collapse"] {
     background: #212529;
     color: white;
 }
+.commentBtn{
+    font-size: 15px;
+    padding: 7px 10px;
+    background-color: #272b30;
+}
 
 
 

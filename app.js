@@ -69,7 +69,6 @@ app.route("/")
             res.render("home", {name: GLOBAL_USERNAME, allDiscussions: results})
         })
     }else{
-        console.log("NEED AUTHENTICATON BEFORE ENTERING HOME");
         res.redirect("/login")
     }
 })
@@ -133,8 +132,6 @@ app.post("/newDiscussion", (req, res)=>
 {
     const newTitle = req.body.newDiscussionTitle
     const newDetail = req.body.newDiscussionDetail
-    console.log("===> " + newTitle);
-    console.log("===> " + newDetail);
 
       
     let newDiscussion = new discussionCollection({
@@ -151,15 +148,17 @@ app.get("/:postpageID", (req, res)=>{
     const requestedDiscussion = req.params.postpageID
     // const requestedDiscussion_lodash = _.lowerCase(requestedDiscussion);
 
-    console.log("requestedDiscussion => " + requestedDiscussion);
+    // console.log("requestedDiscussion => " + requestedDiscussion);
     // console.log("lodashed version => " + requestedDiscussion_lodash);
     
     if(req.isAuthenticated()){
         discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
-            res.render("postpage" , {DiscussionTitle: result.discussion_title, DiscussionDetail: result.details, allPost:result.Posts})
+            res.render("postpage" , {
+                    DiscussionTitle: result.discussion_title,
+                    DiscussionDetail: result.details,
+                    allPost:result.Posts})
         })
     }else{
-        console.log("NOT AUTHENTICATED TO ==> " + requestedDiscussion);
         res.redirect("/login")
     }
 })
@@ -178,9 +177,6 @@ app.post("/create_new_post", (req, res)=>{
         post_content: new_post_content
     })
 
-    console.log(title_fromPostBtn);
-    console.log(newPost);
-
     if(new_post_content === ""){
         res.redirect("back")
         return
@@ -189,8 +185,6 @@ app.post("/create_new_post", (req, res)=>{
     if(req.isAuthenticated()){
         discussionCollection.findOne({discussion_title: title_fromPostBtn}, (err, result)=>{
             if(!err){
-                console.log(result.Posts);
-
                 result.Posts.push(newPost)
                 result.save()
                 res.redirect("back")
@@ -203,7 +197,45 @@ app.post("/create_new_post", (req, res)=>{
 // ============================================== Add Comment ==================================
 
 app.post("/add_comment", (req, res)=>{
+    const discussionName = req.body.hiddenInp_discussionName;
+    const comments_postID = req.body.hiddenInp_commentsID;
+    const comments_content = req.body.comment_input;
 
+    console.log(discussionName);
+    console.log(comments_postID);
+    console.log(comments_content);
+    
+
+    const newComment = new commentCollection({
+        commenter: GLOBAL_USERNAME,
+        comment: comments_content
+    })
+
+    // postCollection.findOne({post_content: comments_postID}, (err, result)=>{
+    //     if(!err){
+    //         result.Comments.push(newComment)
+    //         result.save()
+    //         res.redirect("back")
+    //     }
+    // })
+
+    // console.log(discussionCollection.find( { discussion_title: discussionName }, { Posts: { $elemMatch: { id: comments_postID } } }));
+    
+    discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
+        if(!err){
+            result.Posts.forEach(i => {
+                if(i.id === comments_postID){
+                    i.Comments.push(newComment)
+                    result.save()
+                }
+            });
+            
+            // result.Comments.push(newComment)
+            // result.save()
+            // res.redirect("back")
+        }
+        res.redirect("back")
+    })
 })
 
 
