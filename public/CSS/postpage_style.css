@@ -291,6 +291,12 @@ a[data-toggle="collapse"] {
     color: royalblue;
 }
 
+.commentLikeBtn{
+    padding: 0 0 10px 0;
+    border: none;
+    background: none;
+}
+
 .no_paddin_margin{
     margin: 0;
     padding: 0;

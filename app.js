@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
 })
 const commentSchema = {
     commenter: String,
-    comment: String
+    comment: String,
+    commentLikers: [String]
 }
 const postSchema = {
     post_creator: String,
@@ -195,7 +196,7 @@ app.post("/create_new_post", (req, res)=>{
 
 app.post("/add_comment", (req, res)=>{
     const discussionName = req.body.hiddenInp_discussionName;
-    const comments_postID = req.body.hiddenInp_commentsID;
+    const comments_postID = req.body.hiddenInp_postID;
     const comments_content = req.body.comment_input;
 
     console.log(discussionName);
@@ -228,23 +229,57 @@ app.post("/add_comment", (req, res)=>{
 
 app.post("/likePost", (req, res)=>{
     const discussionName = req.body.hiddenInp_discussionName;
-    const postID = req.body.hiddenInp_commentsID
-    const newLiker = req.user.username
+    const postID = req.body.hiddenInp_postID
+    const ME = req.user.username
 
     console.log(postID);
-    console.log(newLiker);
+    console.log(ME);
 
     discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
         if(!err){
-            result.Posts.forEach(i => {
-                if(i.id === postID){
-                    if(!i.liker.includes(newLiker)){
-                        i.liker.push(newLiker)
+            result.Posts.forEach(i_post => {
+                if(i_post.id === postID){
+                    if(!i_post.liker.includes(ME)){
+                        i_post.liker.push(ME)
                         result.save()
                     }
                     else{
                         console.log("Already Liked");
                     }
+                }
+            });
+        }
+        res.redirect("back")
+    })
+})
+
+
+
+
+// ============================================== Comment Like ==================================
+
+app.post("/likeComment", (req, res)=>{
+    const discussionName = req.body.hiddenInp_discussionName;
+    const postID = req.body.hiddenInp_postID
+    const commentID = req.body.hiddenInp_commentsID
+    const ME = req.user.username
+
+    console.log(postID);
+    console.log(commentID);
+    console.log(ME);
+
+    discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
+        if(!err){
+            result.Posts.forEach(i_post => {
+                if(i_post.id === postID){
+                    i_post.Comments.forEach(i_comment =>{
+                        if(i_comment.id === commentID){
+                            if(!i_comment.commentLikers.includes(ME)){
+                                i_comment.commentLikers.push(ME)
+                                result.save()
+                            }
+                        }
+                    })
                 }
             });
         }
