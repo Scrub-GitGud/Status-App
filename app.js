@@ -34,7 +34,7 @@ const commentSchema = {
 const postSchema = {
     post_creator: String,
     post_content: String,
-    liker: String,
+    liker: [String],
     Comments: [commentSchema]
 }
 const discussionSchema = {
@@ -57,16 +57,14 @@ passport.deserializeUser(UserCollection.deserializeUser());
 
 
 
-let GLOBAL_USERNAME;
 
 //=========================================== [-ROUTE-] ============================================
 app.route("/")
 .get((req, res)=>{
     if(req.isAuthenticated()){ // IF THE USER ALREADY LOGGED IN THEN RENDER HOME, ELSE RENDER LOGIN
-        // res.render("home", {name: GLOBAL_USERNAME})
         discussionCollection.find({}, (err, results)=>{
             if(err) console.log(err);
-            res.render("home", {name: GLOBAL_USERNAME, allDiscussions: results})
+            res.render("home", {myProfileName: req.user.username, allDiscussions: results})
         })
     }else{
         res.redirect("/login")
@@ -89,8 +87,6 @@ app.route("/login")
     }
     else{
         passport.authenticate("local")(req, res, function(){
-            
-            GLOBAL_USERNAME = req.body.username;
             res.redirect("/")
         })
     }
@@ -109,7 +105,6 @@ app.route("/register")
             res.redirect("/register");
         }else{
             passport.authenticate("local")(req, res, function () {
-                GLOBAL_USERNAME = req.body.username;
                 res.redirect("/")
             })
         }
@@ -146,6 +141,7 @@ app.post("/newDiscussion", (req, res)=>
 
 app.get("/:postpageID", (req, res)=>{
     const requestedDiscussion = req.params.postpageID
+    
     // const requestedDiscussion_lodash = _.lowerCase(requestedDiscussion);
 
     // console.log("requestedDiscussion => " + requestedDiscussion);
@@ -156,7 +152,8 @@ app.get("/:postpageID", (req, res)=>{
             res.render("postpage" , {
                     DiscussionTitle: result.discussion_title,
                     DiscussionDetail: result.details,
-                    allPost:result.Posts})
+                    allPost:result.Posts,
+                    myProfileName: req.user.username})
         })
     }else{
         res.redirect("/login")
@@ -173,7 +170,7 @@ app.post("/create_new_post", (req, res)=>{
     const new_post_content = req.body.post_textarea
     
     const newPost = new postCollection({
-        post_creator: GLOBAL_USERNAME,
+        post_creator: req.user.username,
         post_content: new_post_content
     })
 
@@ -207,20 +204,10 @@ app.post("/add_comment", (req, res)=>{
     
 
     const newComment = new commentCollection({
-        commenter: GLOBAL_USERNAME,
+        commenter: req.user.username,
         comment: comments_content
     })
 
-    // postCollection.findOne({post_content: comments_postID}, (err, result)=>{
-    //     if(!err){
-    //         result.Comments.push(newComment)
-    //         result.save()
-    //         res.redirect("back")
-    //     }
-    // })
-
-    // console.log(discussionCollection.find( { discussion_title: discussionName }, { Posts: { $elemMatch: { id: comments_postID } } }));
-    
     discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
         if(!err){
             result.Posts.forEach(i => {
@@ -229,14 +216,53 @@ app.post("/add_comment", (req, res)=>{
                     result.save()
                 }
             });
-            
-            // result.Comments.push(newComment)
-            // result.save()
-            // res.redirect("back")
         }
         res.redirect("back")
     })
 })
+
+
+
+
+// ============================================== Post Like ==================================
+
+app.post("/likePost", (req, res)=>{
+    const discussionName = req.body.hiddenInp_discussionName;
+    const postID = req.body.hiddenInp_commentsID
+    const newLiker = req.user.username
+
+    console.log(postID);
+    console.log(newLiker);
+
+    discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
+        if(!err){
+            result.Posts.forEach(i => {
+                if(i.id === postID){
+                    if(!i.liker.includes(newLiker)){
+                        i.liker.push(newLiker)
+                        result.save()
+                    }
+                    else{
+                        console.log("Already Liked");
+                    }
+                }
+            });
+        }
+        res.redirect("back")
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 app.listen(PORT, ()=>{

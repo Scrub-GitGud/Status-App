@@ -272,11 +272,12 @@ a[data-toggle="collapse"] {
     margin: 0 14px 0 14px;
 }
 
-.Like_Comment_Btn{
-    padding: 8px 15px; 
+.likeBtn{
+    padding: 7px 15px; 
     margin: 10px 0px ;
     background: #232323; 
     color: #FFF;
+    font-size: 17px;
 }
 .Like_Comment_Btn:hover{
     color: #727272;

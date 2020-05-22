@@ -62,19 +62,25 @@
                 <p><%= allPost[i].post_content %> </p>
                 
                 <!-- Like Button -->
-                <a href="" class="btn Like_Comment_Btn"><i class="far fa-thumbs-up"></i> 59</a>
+                <form action="/likePost" method="POST">
+                    <button type="submit" class="myBtn postBtn likeBtn" name="likeBtn">
+                        <%if (allPost[i].liker.includes(myProfileName)) { %>
+                            <i class="fas fa-thumbs-up"></i>
+                        <% } else {%>
+                            <i class="far fa-thumbs-up"></i>
+                        <% } %>
+                        <%= allPost[i].liker.length %> 
+                    </button>
+                    <input type="hidden" name="hiddenInp_discussionName" value="<%= DiscussionTitle %>">
+                    <input type="hidden" name="hiddenInp_commentsID" value="<%= allPost[i].id %>">
+                    <!-- <a href="" class="btn Like_Comment_Btn"><i class="far fa-thumbs-up"></i> 59</a> -->
+                </form>
 
 
                 <!-- Comment Input -->
                 <div class="group">
                     <form action="/add_comment" method="POST">  
-                        <input 
-                        type="text" 
-                        class="comment_input" 
-                        name="comment_input"  
-                        required> 
-                        <!--AFTER ADDING THIS FEATURE MY CODE BECAME SLOW-->
-                        
+                        <input type="text" class="comment_input" name="comment_input"  required> 
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Add a comment..</label>
