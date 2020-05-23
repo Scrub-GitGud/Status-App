@@ -11,30 +11,15 @@
                 <h3>Activity</h3>
             </div>
 
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">John Cena</a> liked your post</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Condoriano</a> Commented on your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
-            <p class="notification"><i class="fas fa-thumbs-up"></i> <a href="#">Con D. Oriano</a> liked your post.</p>
-            <p class="notification"><i class="fas fa-comment"></i> <a href="#">Buggy D. Clown</a> Commented your post</p>
+            <% for(let i = (allNotification.length - 1); i >= 0; i--) { %>
+            <p class="notification">
+                 <a href="#"><%= allNotification[i].notification_from %></a>
+                 <%= allNotification[i].notification_type %>
+            </p>
+            <% } %>
+
+            <!-- Default Notification -->
+            <p class="notification">Welcome to <a href="#">xStatus</a></p>
 
         </div>
 

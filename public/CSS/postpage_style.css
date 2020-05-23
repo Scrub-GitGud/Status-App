@@ -240,6 +240,7 @@ a[data-toggle="collapse"] {
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .notification:hover{
     background-color: #747474;
@@ -295,6 +296,7 @@ a[data-toggle="collapse"] {
     padding: 0 0 10px 0;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .no_paddin_margin{

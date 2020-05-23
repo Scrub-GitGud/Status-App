@@ -23,9 +23,16 @@ app.use(passport.session());    // telling passport to also set up session
 mongoose.connect('mongodb://localhost:27017/STATUS_APP_DB', {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('useCreateIndex', true); // TO AVOID DeprecationWarning
 
+
+
+const notificationSchema = {
+    notification_from: String,
+    notification_type: String
+}
 const userSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    notifications: [notificationSchema]
 })
 const commentSchema = {
     commenter: String,
@@ -47,6 +54,7 @@ const discussionSchema = {
 
 userSchema.plugin(passportLocalMongoose);
 
+const notificationCollection = new mongoose.model("notificationCollection", notificationSchema)
 const UserCollection = new mongoose.model("UserCollection", userSchema)
 const commentCollection = new mongoose.model("commentCollection", commentSchema)
 const postCollection = new mongoose.model("postCollection", postSchema)
@@ -142,19 +150,31 @@ app.post("/newDiscussion", (req, res)=>
 
 app.get("/:postpageID", (req, res)=>{
     const requestedDiscussion = req.params.postpageID
-    
     // const requestedDiscussion_lodash = _.lowerCase(requestedDiscussion);
 
-    // console.log("requestedDiscussion => " + requestedDiscussion);
-    // console.log("lodashed version => " + requestedDiscussion_lodash);
+
+    
     
     if(req.isAuthenticated()){
+
+        let allNotificationAry = [];
+        
+
+        UserCollection.findById(req.user.id, function(err, result) {
+            allNotificationAry = [...result.notifications]
+        });
+
+        
+
+
         discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
             res.render("postpage" , {
                     DiscussionTitle: result.discussion_title,
                     DiscussionDetail: result.details,
                     allPost:result.Posts,
-                    myProfileName: req.user.username})
+                    myProfileName: req.user.username,
+                    allNotification: allNotificationAry
+                })
         })
     }else{
         res.redirect("/login")
@@ -198,23 +218,21 @@ app.post("/add_comment", (req, res)=>{
     const discussionName = req.body.hiddenInp_discussionName;
     const comments_postID = req.body.hiddenInp_postID;
     const comments_content = req.body.comment_input;
-
-    console.log(discussionName);
-    console.log(comments_postID);
-    console.log(comments_content);
-    
+    const ME = req.user.username
 
     const newComment = new commentCollection({
-        commenter: req.user.username,
+        commenter: ME,
         comment: comments_content
     })
 
     discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
         if(!err){
-            result.Posts.forEach(i => {
-                if(i.id === comments_postID){
-                    i.Comments.push(newComment)
+            result.Posts.forEach(i_post => {
+                if(i_post.id === comments_postID){
+                    i_post.Comments.push(newComment)
                     result.save()
+
+                    postCommentNotify(i_post, ME);
                 }
             });
         }
@@ -232,9 +250,6 @@ app.post("/likePost", (req, res)=>{
     const postID = req.body.hiddenInp_postID
     const ME = req.user.username
 
-    console.log(postID);
-    console.log(ME);
-
     discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
         if(!err){
             result.Posts.forEach(i_post => {
@@ -242,6 +257,8 @@ app.post("/likePost", (req, res)=>{
                     if(!i_post.liker.includes(ME)){
                         i_post.liker.push(ME)
                         result.save()
+
+                        postLikeNotify(i_post, ME);
                     }
                     else{
                         console.log("Already Liked");
@@ -264,10 +281,6 @@ app.post("/likeComment", (req, res)=>{
     const commentID = req.body.hiddenInp_commentsID
     const ME = req.user.username
 
-    console.log(postID);
-    console.log(commentID);
-    console.log(ME);
-
     discussionCollection.findOne({discussion_title: discussionName}, (err, result)=>{
         if(!err){
             result.Posts.forEach(i_post => {
@@ -277,6 +290,8 @@ app.post("/likeComment", (req, res)=>{
                             if(!i_comment.commentLikers.includes(ME)){
                                 i_comment.commentLikers.push(ME)
                                 result.save()
+
+                                commentLikeNotify(i_comment, ME);
                             }
                         }
                     })
@@ -290,6 +305,52 @@ app.post("/likeComment", (req, res)=>{
 
 
 
+function commentLikeNotify(i_comment, ME) {
+    const commentOwner = i_comment.commenter;
+    const newNotification = new notificationCollection({
+        notification_from: ME,
+        notification_type: "has liked your comment. (" + i_comment.comment.slice(0, 20) + "..."
+    });
+    UserCollection.findOne({ username: commentOwner }, (err2, result2) => {
+        if (!err2) {
+            result2.notifications.push(newNotification);
+            result2.save();
+        }
+    });
+}
+
+// ============================================== Post Comment Notification ==================================
+
+function postCommentNotify(i_post, ME) {
+    const postOwner = i_post.post_creator;
+    const newNotification = new notificationCollection({
+        notification_from: ME,
+        notification_type: "has commented your post. (" + i_post.post_content.slice(0, 20) + "...)"
+    });
+    UserCollection.findOne({ username: postOwner }, (err2, result2) => {
+        if (!err2) {
+            result2.notifications.push(newNotification);
+            result2.save();
+        }
+    });
+}
+
+// ============================================== Post Like Notification ==================================
+function postLikeNotify(i_post, ME) {
+    const postOwner = i_post.post_creator;
+    const newNotification = new notificationCollection({
+        notification_from: ME,
+        notification_type: "has liked your post."
+    });
+    UserCollection.findOne({ username: postOwner }, (err2, result2) => {
+        if (!err2) {
+            result2.notifications.push(newNotification);
+            result2.save();
+        }
+    });
+}
+
+// ============================================== Comment Like Notification ==================================
 
 
 
@@ -303,3 +364,4 @@ app.post("/likeComment", (req, res)=>{
 app.listen(PORT, ()=>{
     console.log("Server running on port: " + PORT);
 })
+
