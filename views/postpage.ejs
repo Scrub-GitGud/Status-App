@@ -42,7 +42,7 @@
 
             <% for(let i = 0; i < allPost.length; i++) { %>
             <div class="post_section">
-                <h3><img src="/avatar5.png" alt="Avatar" class="avatar"><%= allPost[i].post_creator %> </h3>
+                <h3><img src="http://api.adorable.io/avatar/200/<%= allPost[i].post_creator %> " alt="Avatar" class="avatar"><%= allPost[i].post_creator %> </h3>
                 
                 <p><%= allPost[i].post_content %> </p>
                 
@@ -88,7 +88,7 @@
   
                 <% for(let j = 0; j < allPost[i].Comments.length; j++) { %>
                 <div class="comments">
-                    <h5><img src="/avatar3.png" alt="Avatar" class="smallAvater"><%= allPost[i].Comments[j].commenter %> </h5>
+                    <h5><img src="http://api.adorable.io/avatar/200/<%= allPost[i].Comments[j].commenter %> " alt="Avatar" class="smallAvater"><%= allPost[i].Comments[j].commenter %> </h5>
                     <p class="no_paddin_margin"><%= allPost[i].Comments[j].comment %> </p>
                     <!-- <a href="" class="Like_Comment_Btn_sm"><i class="far fa-thumbs-up"></i> 8</a> -->
                     <!-- <a href="" class="Like_Comment_Btn_sm"><i class="far fa-comment"></i> Reply</a> -->
