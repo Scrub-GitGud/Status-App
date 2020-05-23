@@ -73,7 +73,10 @@ app.route("/")
     if(req.isAuthenticated()){ // IF THE USER ALREADY LOGGED IN THEN RENDER HOME, ELSE RENDER LOGIN
         discussionCollection.find({}, (err, results)=>{
             if(err) console.log(err);
-            res.render("home", {myProfileName: req.user.username, allDiscussions: results})
+            res.render("home", {
+                myProfileName: req.user.username,
+                allDiscussions: results,
+                showHamburger: false})
         })
     }else{
         res.redirect("/login")
@@ -158,14 +161,10 @@ app.get("/:postpageID", (req, res)=>{
     if(req.isAuthenticated()){
 
         let allNotificationAry = [];
-        
 
         UserCollection.findById(req.user.id, function(err, result) {
             allNotificationAry = [...result.notifications]
         });
-
-        
-
 
         discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
             res.render("postpage" , {
@@ -173,7 +172,8 @@ app.get("/:postpageID", (req, res)=>{
                     DiscussionDetail: result.details,
                     allPost:result.Posts,
                     myProfileName: req.user.username,
-                    allNotification: allNotificationAry
+                    allNotification: allNotificationAry,
+                    showHamburger: true
                 })
         })
     }else{
@@ -305,19 +305,7 @@ app.post("/likeComment", (req, res)=>{
 
 
 
-function commentLikeNotify(i_comment, ME) {
-    const commentOwner = i_comment.commenter;
-    const newNotification = new notificationCollection({
-        notification_from: ME,
-        notification_type: "has liked your comment. (" + i_comment.comment.slice(0, 20) + "..."
-    });
-    UserCollection.findOne({ username: commentOwner }, (err2, result2) => {
-        if (!err2) {
-            result2.notifications.push(newNotification);
-            result2.save();
-        }
-    });
-}
+
 
 // ============================================== Post Comment Notification ==================================
 
@@ -340,7 +328,7 @@ function postLikeNotify(i_post, ME) {
     const postOwner = i_post.post_creator;
     const newNotification = new notificationCollection({
         notification_from: ME,
-        notification_type: "has liked your post."
+        notification_type: "has liked your post.  (" + i_post.post_content.slice(0, 20) + "...)"
     });
     UserCollection.findOne({ username: postOwner }, (err2, result2) => {
         if (!err2) {
@@ -352,7 +340,19 @@ function postLikeNotify(i_post, ME) {
 
 // ============================================== Comment Like Notification ==================================
 
-
+function commentLikeNotify(i_comment, ME) {
+    const commentOwner = i_comment.commenter;
+    const newNotification = new notificationCollection({
+        notification_from: ME,
+        notification_type: "has liked your comment. (" + i_comment.comment.slice(0, 20) + "..."
+    });
+    UserCollection.findOne({ username: commentOwner }, (err2, result2) => {
+        if (!err2) {
+            result2.notifications.push(newNotification);
+            result2.save();
+        }
+    });
+}
 
 
 

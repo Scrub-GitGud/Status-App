@@ -310,7 +310,7 @@ a[data-toggle="collapse"] {
 
 /* ****************  FOR Navbar From W3School   **************************************** */
   .topnav {
-    overflow: hidden;
+    /* overflow: hidden; */ /* Makes Dropdown hidden */
     background-color: #5c5c5c;
 
     position: fixed; /* Set the navbar to fixed position */
@@ -322,41 +322,75 @@ a[data-toggle="collapse"] {
   .topnav a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: #212529;
     /* background-color: #747474; */
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
     text-decoration: none;
-    font-size: 25px;
+    font-size: 18px;
 
     height: 100%;
     /* position: absolute; */
   }
   
   #sidebarCollapse:hover {
-    background-color: #202020;
+    /* background-color: #202020; */
     color: rgb(255, 255, 255);
   }
   
   .topnav a.active {
     /* background-color: #232323; */
-    color: white;
+    color: #212529;
   }
 
   .BrandLogo{
-    height: 40px;
+    height: 50px;
     width: auto;
-    padding: 0px 5px 0px 14px;
+    padding: 10px 10px 0px 14px;
+    margin: 5px 0px 5px 0px;
 }
 
-  .profileAvater{
+.notification_collapse{
+    float: left;
+    display: block;
+    width: 40px;
+    height: 100%;
+    vertical-align: middle;
+
+    position: relative;
+    display: inline-block;
+    margin: 15px 10px;
+}
+.hamburgerIcon{
+    width: 100%;
+    height: 100%;
+    margin: 0px 5px;
+    font-size: 35px;
+    vertical-align: middle;
+}
+
+.profileAvater{
     float: right;
     vertical-align: middle;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 6px 20px;
     border: 2px solid white;
+    cursor: pointer;
+    margin: 4px 0px;
+}
+.profileName{
+    float: right;
+    padding: 0px 5px;
+    margin: 0px 0px;
+    font-size: 200%;
+    font-weight: bold;
+    /* background-color: tomato; */
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+
 }
 
 /* ****************  profile avater hover   **************************************** */
@@ -364,14 +398,24 @@ a[data-toggle="collapse"] {
     position: relative;
     display: inline-block;
     float: right;
+    margin: 10px 15px;
+    display: inline-block;
 }
 
 .dropdown-menu{
     position: relative;
-
-    z-index: 5000;
+    color: #232323;
+    z-index: 10;
+    padding: 0px;
+    margin: 0px;
 }
 .dropdown-item{
     position: relative;
-    z-index: 5000;
+    padding: 8px 4px;
+    font-weight: bolder;
+    z-index: 10;
+}
+.dropdown-item:hover{
+    background-color: #191c1d;
+    color: white;
 }

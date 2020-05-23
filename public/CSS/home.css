@@ -1,11 +1,11 @@
 
 
 /* ****************************************** HEADER ************************************** */
-.BrandLogo{
+/* .BrandLogo{
     height: 40px;
     width: auto;
     padding: 0px 50px 0px 10px;
-}
+} */
 
 /* .ProfileName{
     background-color: black;
@@ -128,6 +128,7 @@
     background-color:white; 
     font-size: 17px;
     width: 500px;
+    height: 250px;
 }
 .myCARD h4{
     
@@ -138,7 +139,7 @@
     cursor: pointer;
 }
 .CardDetails{
-    height: 130px;
+    height: 60%;
 }
 .different_p{
     color: tomato;
@@ -153,8 +154,13 @@
     width: 100%;
     height: 100%;
     padding: 10px 20px;
-    margin: auto;
-    font-size: 100px;
+    margin: 0px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+.plusIcon{
+    width: 100px !important;
+    height: 100px !important;
 }
 
 

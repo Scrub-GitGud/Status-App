@@ -41,21 +41,24 @@
 
 <!-- ---------------------------------------------HEADER------------------------------------------- -->
     <div class="topnav bg-secondary" id="myTopnav">
-        <a type="button" id="sidebarCollapse" class="icon notification_collapse">
-            <i class="fa fa-bars"></i>
-        </a>
-        <a href="/" class="active"><img src="xStatus-logo.png" alt="BrandLogo"   class="BrandLogo"></a>
+        <!-- DON'T SHOW HAMBURGER IN HOME PAGE -->
+        <% if(showHamburger === true){ %> 
+        <div type="button" id="sidebarCollapse" class="icon notification_collapse">
+            <i class="fa fa-bars hamburgerIcon"></i>
+        </div>
+        <% } %> 
+
+        <img onclick="location.href='/'" src="xStatus-logo.png" alt="BrandLogo"   class="BrandLogo">
 
         
 
         <div class="btn-group dropleft profileDropdown">
-            <img src="/avatar5.png" alt="Avatar" class="dropdown-toggle profileAvater"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
+            <img src="https://api.adorable.io/avatars/280/abott@adorable.png" alt="Avatar" class="dropdown-toggle profileAvater"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="profileName" onclick="location.href='/'"><%= myProfileName %> </span>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#"><%= myProfileName %> </a>
-              <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="#">Settings</a>
-              <a class="dropdown-item" href="#">Logout</a>
+              <!-- <a class="dropdown-item" href="/"><%= myProfileName %> </a> -->
+              <a class="dropdown-item" href="/logout">Logout</a>
             </div>
           </div>
     </div>
