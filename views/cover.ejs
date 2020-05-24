@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xStatus</title>
+    <link rel="shortcut icon" href="/xS_Favicon.png">
+    
+
+	<link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="CSS/cover.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	
+	<div class="bg">
+		<!-- <div class="container">
+			<button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#loginModal">Login</button>  
+		</div> -->
+		<div class="imgDiv">
+			<img src="xSLogo.png" alt="" class="xSLogo">
+			<div class="xStatusLogoDiv"><img src="xStatusLogo.png" alt="" class="xStatusLogo"></div>
+			
+		</div>
+		<div class="siteDescriptionDiv">
+			<h5 class="siteDescription">Make a status and let people know, what's on your mind.</h5>
+		</div>
+
+		<div class="btnDiv">
+			<button type="button" class="btn btn-warning btn-round logRegTglBtn" data-toggle="modal" data-target="#loginModal">Login/Register</button>  
+		</div>
+	</div>
+
+	<!-- ----------------------------------------  Login  --------------------------------------------- -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-title text-center">
+						<h4>Login</h4>
+					</div>
+					<div class="d-flex flex-column text-center">
+						<form action="/login" method="POST">
+							<div class="form-group">
+								<input name="username" type="text" class="form-control inputForm" id="email1"placeholder="Username..." required>
+							</div>
+							<div class="form-group">
+								<input name="password" type="password" class="form-control inputForm" id="password1" placeholder="Password..." required>
+							</div>
+						<button type="submit" class="btn btn-warning btn-block btn-round inputForm">Login</button>
+						</form>
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="signup-section" data-toggle="modal" data-target="#signupModal" data-dismiss="modal" aria-label="Close">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ----------------------------------------  Login  --------------------------------------------- -->
+
+	<!-- ----------------------------------------  SignUp  --------------------------------------------- -->
+	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-title text-center">
+						<h4>Sign Up</h4>
+					</div>
+					<div class="d-flex flex-column text-center">
+						<form action="/register" method="POST">
+						<div class="form-group">
+							<input name="username" type="text" class="form-control inputForm" id="email1"placeholder="Username..." required>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control inputForm" id="email1"placeholder="Email...">
+						</div>
+						<div class="form-group">
+							<input name="password" type="password" class="form-control inputForm" id="password1" placeholder="Password..." required>
+						</div>
+						<button type="submit" class="btn btn-warning btn-block btn-round inputForm">Sign Up</button>
+						</form>
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="signup-section" data-toggle="modal" data-target="#loginModal" data-dismiss="modal" aria-label="Close">Already joined? <a href="#a" class="text-info"> Login</a>.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ----------------------------------------  Login  --------------------------------------------- -->
+
+    <script>
+        $(document).ready(function() {             
+            // $('#loginModal').modal('show');
+
+            $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+
+</body>
+</html>

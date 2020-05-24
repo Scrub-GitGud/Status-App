@@ -1,3 +1,4 @@
+//Atlas Database user : sad | password : sad
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -20,7 +21,8 @@ app.use(session({
 app.use(passport.initialize()); // Setup passport
 app.use(passport.session());    // telling passport to also set up session
 
-mongoose.connect('mongodb://localhost:27017/STATUS_APP_DB', {useNewUrlParser: true, useUnifiedTopology: true})
+// mongoose.connect('mongodb://localhost:27017/STATUS_APP_DB', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://admin-sinn:maxpayne@cluster0-sveyr.mongodb.net/xStatusDB', {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('useCreateIndex', true); // TO AVOID DeprecationWarning
 
 
@@ -85,7 +87,7 @@ app.route("/")
 
 app.route("/login")
 .get((req, res)=>{
-    res.render("login")
+    res.render("cover")
 })
 .post((req, res)=>{
     const userInfo = new UserCollection({
@@ -107,7 +109,7 @@ app.route("/login")
 
 app.route("/register")
 .get((req, res)=>{
-    res.render("register")
+    res.render("cover")
 })
 .post((req, res)=>{
     UserCollection.register({username: req.body.username, active: false}, req.body.password, function(err, user)
