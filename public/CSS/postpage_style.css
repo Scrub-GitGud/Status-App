@@ -1,10 +1,5 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
-    /* font-family: 'Poppins', sans-serif; */
     /* font-family: 'Mukta', sans-serif; */
     font-family: 'Poppins', sans-serif;
     background: #cdcdcd;
@@ -144,7 +139,7 @@ a[data-toggle="collapse"] {
 }
 
 
-/*Remove the scrollbar from Chrome, Safari, Edge and IE, DOESN'T WORK IN FIRE FOX*/
+/*Removes the scrollbar from Chrome, Safari, Edge and IE, DOESN'T WORK IN FIRE FOX*/
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
@@ -166,7 +161,7 @@ a[data-toggle="collapse"] {
     color: #212529;
 
     border-radius: 10px;
-    margin: 60px 10px;
+    margin: 70px 10px;
 }
 .title_nd_detail h1{
     font: 56px;
@@ -323,9 +318,7 @@ a[data-toggle="collapse"] {
     float: left;
     display: block;
     color: #212529;
-    /* background-color: #747474; */
     text-align: center;
-    /* padding: 10px; */
     text-decoration: none;
     font-size: 18px;
 
@@ -334,12 +327,10 @@ a[data-toggle="collapse"] {
   }
   
   #sidebarCollapse:hover {
-    /* background-color: #202020; */
     color: rgb(255, 255, 255);
   }
   
   .topnav a.active {
-    /* background-color: #232323; */
     color: #212529;
   }
 
@@ -348,6 +339,7 @@ a[data-toggle="collapse"] {
     width: auto;
     padding: 10px 10px 0px 14px;
     margin: 5px 0px 5px 0px;
+    cursor: pointer;
 }
 
 .notification_collapse{
@@ -359,7 +351,7 @@ a[data-toggle="collapse"] {
 
     position: relative;
     display: inline-block;
-    margin: 15px 10px;
+    margin: 15px 0px 15px 10px;
 }
 .hamburgerIcon{
     width: 100%;
@@ -382,10 +374,9 @@ a[data-toggle="collapse"] {
 .profileName{
     float: right;
     padding: 0px 5px;
-    margin: 0px 0px;
+    margin: 0px;
     font-size: 200%;
     font-weight: bold;
-    /* background-color: tomato; */
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -400,6 +391,7 @@ a[data-toggle="collapse"] {
     float: right;
     margin: 10px 15px;
     display: inline-block;
+    z-index: 10;
 }
 
 .dropdown-menu{

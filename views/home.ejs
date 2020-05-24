@@ -1,35 +1,5 @@
 <%- include('partials/Header.ejs') %>
 
-<!-- ---------------------------------------------HEADER------------------------------------------- -->
-<!-- <nav class="navbar navbar-expand navbar-light bg-secondary">
-    <a href="/"><img src="xStatus-logo.png" alt="BrandLogo"   class="BrandLogo"></a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarsExample02">
-        <form class="form-inline my-4 my-md-0">
-        <input class="form-control SearchBox" type="text" placeholder="Search" >
-        </form>
-    </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle ProfileName" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle"></i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="/logout">Log Out</a>
-        </div>
-    </div>
-</nav> -->
-<!-- ---------------------------------------------HEADER------------------------------------------- -->
-
-<!-- <div class="Discussion-Option row">
-  <a class="col" href="#">All Discussions</a>
-  <a class="col" href="#">My Discussions</a>
-</div> -->
-
 <!-- --------------------------------------------------Modal---------------------------------------------- -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -52,8 +22,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-        <button class="btn btn-warning" type="submit">Create</button>
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+        <button class="btn btn-dark" type="submit">Create</button>
       </div>
     </form>
     </div>
@@ -61,45 +31,9 @@
 </div>
 <!-- --------------------------------------------------Modal---------------------------------------------- -->
 
-<!-- ----------------------------------------------Discussions-------------------------------------------- -->
+<!-- ---------------------------------------------- Cards -------------------------------------------- -->
 
 <div class=" card-deck d BodyDiv">
-
-    <!-- backup
-       <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Covid-19</h5>
-              <p class="card-text">Some new discussion on Covid-19</p>
-              <a href="#" class="btn btn-primary">Join</a>
-            </div>
-          </div>
-    </div> -->
-    <!-- <% for(let i = 0; i < allDiscussions.length; i++) { %>
-    <a href="/<%= allDiscussions[i].discussion_title %>" class="discussion_a">
-      <div class="col col-lg-3 col-md-4 col-sm-6">
-          <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><%= allDiscussions[i].discussion_title %> </h5>
-                <p class="card-text"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
-                <a href="#" class="btn btn-primary">12 Posts</a>
-              </div>
-            </div>
-      </div>
-    </a>
-    <% } %> -->
-
-    <!-- <% for(let i = 0; i < allDiscussions.length; i++) { %>
-      <div class="col col-lg-3 col-md-4 col-sm-6" onclick="location.href='<%= allDiscussions[i].discussion_title %>'">
-          <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><%= allDiscussions[i].discussion_title %> </h5>
-                <p class="card-text"><%= allDiscussions[i].details.slice(0,60) + " ..."%></p>
-                <p class="different_p">12 posts</p>
-              </div>
-            </div>
-      </div>
-    <% } %> -->
 
     <div class="row">
       <% for(let i = 0; i < allDiscussions.length; i++) { %>
@@ -118,21 +52,6 @@
         </button>
       </div>
     </div>
-
-   
-
-
-    <!-- ------------------------------------------------------------------------------------------------- -->
-
-    <!-- <div class="col col-lg-3 col-md-4 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
-                New Discussion
-              </button>
-            </div>
-          </div>
-    </div> -->
 
 </div>
 

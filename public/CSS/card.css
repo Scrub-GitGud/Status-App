@@ -1,0 +1,54 @@
+.BodyDiv{
+    margin: 100px 25px;
+    /* background-color: #ffc107; */
+    padding: 15px 5px;
+    border-radius: 20px;
+    min-height: 600px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0px;
+}
+
+.myCARD{
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color:white; 
+    font-size: 17px;
+    width: 500px;
+    height: 250px;
+}
+.myCARD h4{
+    
+}
+.myCARD:hover{
+    background-color: #e6e6e6;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.CardDetails{
+    height: 60%;
+}
+.different_p{
+    color: tomato;
+}
+
+.plusBtn{
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    margin: 0px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+.plusIcon{
+    width: 100px !important;
+    height: 100px !important;
+}
+
+
+
