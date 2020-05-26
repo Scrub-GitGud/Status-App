@@ -1,5 +1,5 @@
 {
-  "name": "status-app",
+  "name": "xstatus",
   "version": "1.0.0",
   "description": "A status app for friend circles",
   "main": "app.js",
