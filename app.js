@@ -170,9 +170,7 @@ app.get("/:postpageID", (req, res)=>{
 
         discussionCollection.findOne({discussion_title : requestedDiscussion}, (err, result)=>{
             res.render("postpage" , {
-                    DiscussionTitle: result.discussion_title,
-                    DiscussionDetail: result.details,
-                    allPost:result.Posts,
+                    Discussion: result,
                     myProfileName: req.user.username,
                     allNotification: allNotificationAry,
                     showHamburger: true

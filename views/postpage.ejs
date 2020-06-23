@@ -27,37 +27,37 @@
         <div id="content">
 
             <div class="title_nd_detail">
-                <h1><%= DiscussionTitle %> </h1>
-                <p><%= DiscussionDetail %> </p>
+                <h1><%= Discussion.discussion_title %> </h1>
+                <p><%= Discussion.details %> </p>
 
                 <div class="form-group">
                     <form action="/create_new_post" method="POST">
                         <textarea name="post_textarea" class="form-control post_textarea" id="post_textarea" rows="6" placeholder="Create new post..."></textarea>
-                        <button type="submit" class="myBtn postBtn" name="postBtn" value="<%= DiscussionTitle %>">Post</button>
+                        <button type="submit" class="myBtn postBtn" name="postBtn" value="<%= Discussion.discussion_title %>">Post</button>
                         <button type="button" class="myBtn cancelBtn" onclick="ClearTextarea();">Cancel</button>
                     </form>
                 </div>
             </div>
             <div class="line"></div>
 
-            <% for(let i = 0; i < allPost.length; i++) { %>
+            <% for(let i = 0; i < Discussion.Posts.length; i++) { %>
             <div class="post_section">
-                <h3><img src="http://api.adorable.io/avatar/200/<%= allPost[i].post_creator %> " alt="Avatar" class="avatar"><%= allPost[i].post_creator %> </h3>
+                <h3><img src="http://api.adorable.io/avatar/200/<%= Discussion.Posts[i].post_creator %> " alt="Avatar" class="avatar"><%= Discussion.Posts[i].post_creator %> </h3>
                 
-                <p><%= allPost[i].post_content %> </p>
+                <p><%= Discussion.Posts[i].post_content %> </p>
                 
                 <!-- Post Like Button -->
                 <form action="/likePost" method="POST">
                     <button type="submit" class="myBtn postBtn likeBtn" name="likeBtn">
-                        <%if (allPost[i].liker.includes(myProfileName)) { %>
+                        <%if (Discussion.Posts[i].liker.includes(myProfileName)) { %>
                             <i class="fas fa-thumbs-up"></i>
                         <% } else {%>
                             <i class="far fa-thumbs-up"></i>
                         <% } %>
-                        <%= allPost[i].liker.length %> 
+                        <%= Discussion.Posts[i].liker.length %> 
                     </button>
-                    <input type="hidden" name="hiddenInp_discussionName" value="<%= DiscussionTitle %>">
-                    <input type="hidden" name="hiddenInp_postID" value="<%= allPost[i].id %>">
+                    <input type="hidden" name="hiddenInp_discussionName" value="<%= Discussion.discussion_title %>">
+                    <input type="hidden" name="hiddenInp_postID" value="<%= Discussion.Posts[i].id %>">
                     <!-- <a href="" class="btn Like_Comment_Btn"><i class="far fa-thumbs-up"></i> 59</a> -->
                 </form>
 
@@ -69,9 +69,9 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Add a comment..</label>
-                        <!-- <button class="myBtn postBtn commentBtn" type="submit" name="commentBtn" value="<%= allPost[i].id %>">Comment</button> -->
-                        <input type="hidden" name="hiddenInp_discussionName" value="<%= DiscussionTitle %>">
-                        <input type="hidden" name="hiddenInp_postID" value="<%= allPost[i].id %>">
+                        <!-- <button class="myBtn postBtn commentBtn" type="submit" name="commentBtn" value="<%= Discussion.Posts[i].id %>">Comment</button> -->
+                        <input type="hidden" name="hiddenInp_discussionName" value="<%= Discussion.discussion_title %>">
+                        <input type="hidden" name="hiddenInp_postID" value="<%= Discussion.Posts[i].id %>">
                     </form>
                 </div>
 
@@ -86,10 +86,10 @@
                 </form> -->
 
   
-                <% for(let j = 0; j < allPost[i].Comments.length; j++) { %>
+                <% for(let j = 0; j < Discussion.Posts[i].Comments.length; j++) { %>
                 <div class="comments">
-                    <h5><img src="http://api.adorable.io/avatar/200/<%= allPost[i].Comments[j].commenter %> " alt="Avatar" class="smallAvater"><%= allPost[i].Comments[j].commenter %> </h5>
-                    <p class="no_paddin_margin"><%= allPost[i].Comments[j].comment %> </p>
+                    <h5><img src="http://api.adorable.io/avatar/200/<%= Discussion.Posts[i].Comments[j].commenter %> " alt="Avatar" class="smallAvater"><%= Discussion.Posts[i].Comments[j].commenter %> </h5>
+                    <p class="no_paddin_margin"><%= Discussion.Posts[i].Comments[j].comment %> </p>
                     <!-- <a href="" class="Like_Comment_Btn_sm"><i class="far fa-thumbs-up"></i> 8</a> -->
                     <!-- <a href="" class="Like_Comment_Btn_sm"><i class="far fa-comment"></i> Reply</a> -->
 
@@ -97,16 +97,16 @@
                     <!-- Comment Like Button -->
                     <form action="/likeComment" method="POST">
                         <button type="submit" class="commentLikeBtn" name="commentLikeBtn">
-                            <%if (allPost[i].Comments[j].commentLikers.includes(myProfileName)) { %>
+                            <%if (Discussion.Posts[i].Comments[j].commentLikers.includes(myProfileName)) { %>
                                 <i class="fas fa-thumbs-up"></i>
                             <% } else {%>
                                 <i class="far fa-thumbs-up"></i>
                             <% } %>
-                            <%= allPost[i].Comments[j].commentLikers.length %> 
+                            <%= Discussion.Posts[i].Comments[j].commentLikers.length %> 
                         </button>
-                        <input type="hidden" name="hiddenInp_discussionName" value="<%= DiscussionTitle %>">
-                        <input type="hidden" name="hiddenInp_postID" value="<%= allPost[i].id %>">
-                        <input type="hidden" name="hiddenInp_commentsID" value="<%= allPost[i].Comments[j].id %>">
+                        <input type="hidden" name="hiddenInp_discussionName" value="<%= Discussion.discussion_title %>">
+                        <input type="hidden" name="hiddenInp_postID" value="<%= Discussion.Posts[i].id %>">
+                        <input type="hidden" name="hiddenInp_commentsID" value="<%= Discussion.Posts[i].Comments[j].id %>">
                     </form>
 
                 </div>
